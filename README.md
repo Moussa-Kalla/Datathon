@@ -1,4 +1,4 @@
-# Datathon Project
+# Datathon : Chatbot interactif pour Ravenfox
 
 ## 📌 Description
 Ce projet a été développé dans le cadre du **Datathon 2025**. Il vise à :
