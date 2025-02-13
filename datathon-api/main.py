@@ -1,5 +1,8 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+from pydantic import BaseModel
+from app import Ravenfox_chat
+
 app = FastAPI()
 
 app.add_middleware(
@@ -16,7 +19,8 @@ app.add_middleware(
 async def root():
     return {"message": "Hello World"}
 
-
-@app.get("/hello/{name}")
-async def say_hello(name: str):
-    return {"message": f"Hello {name}"}
+class Answer(BaseModel):
+    text: str
+@app.post("/answer")
+async def say_hello(answer: Answer):
+    return {"message": Ravenfox_chat(answer.text)}
