@@ -3,12 +3,13 @@ import numpy as np
 import faiss
 from sentence_transformers import SentenceTransformer
 from openai import OpenAI
+import os
 
-client = OpenAI(api_key="XXXXXXXXXXXXXXXX")
+client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 
 
 # Charger les données du fichier JSON
-with open("/Users/moussa-kalla/Datathon/data/faq.json", "r", encoding="utf-8") as f:
+with open("data/faq.json", "r", encoding="utf-8") as f:
     data = json.load(f)
 
 # Extraire les instructions et inputs comme données à indexer
@@ -25,22 +26,25 @@ index = faiss.IndexFlatL2(dimension)
 index.add(np.array(embeddings))
 
 # Sauvegarder l'index et les réponses
-faiss.write_index(index, "/Users/moussa-kalla/Datathon/data/faq.faiss")
-with open("/Users/moussa-kalla/Datathon/data/responses.json", "w", encoding="utf-8") as f:
+faiss.write_index(index, "data/faq.faiss")
+with open("data/responses.json", "w", encoding="utf-8") as f:
     json.dump(responses, f)
 
 def search_faq(query):
     query_vector = model.encode([query])  # Encoder la question
 
     # Charger l'index et les réponses
-    index = faiss.read_index("/Users/moussa-kalla/Datathon/data/faq.faiss")
-    with open("/Users/moussa-kalla/Datathon/data/responses.json", "r", encoding="utf-8") as f:
+    index = faiss.read_index("data/faq.faiss")
+    with open("data/responses.json", "r", encoding="utf-8") as f:
         responses = json.load(f)
 
     # Trouver la réponse la plus proche
     _, idx = index.search(np.array(query_vector), k=1)  
     return responses[idx[0][0]]  # Retourner la meilleure réponse
 
+def convert_to_json(text):
+    text = text.replace("json", "").replace("```", "")
+    return json.loads(text)
 
 def Ravenfox_chat(question):
     """ Envoie la question à GPT-4o avec du streaming """
@@ -50,20 +54,11 @@ def Ravenfox_chat(question):
     prompt = f"Voici une réponse issue de la base de connaissances :\n{retrieved_answer}\n\nQuestion : {question}\nRéponds avec précision en tenant compte du contexte."
 
     # Appel API OpenAI avec STREAMING activé
-    response = client.chat.completions.create(
+    response = client.chat.with_raw_response.completions.create(
         model="gpt-4o",
         messages=[{"role": "user", "content": prompt}],
         max_tokens=1000,
-        stream=True  # STREAMING ACTIVÉ
+        stream=False  # STREAMING ACTIVÉ
     )
 
-    # Affichage en direct
-    for chunk in response:
-        if chunk.choices[0].delta.content:  # Vérifie s'il y a un contenu à afficher
-            print(chunk.choices[0].delta.content, end="", flush=True)
-
-    print()  
-
-question = "Quelle est la durée de la formation ?"
-
-print(Ravenfox_chat(question))
+    return convert_to_json(response.text)['choices'][0]['message']['content']
