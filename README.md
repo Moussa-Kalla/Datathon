@@ -4,7 +4,7 @@
 Ce projet a été développé dans le cadre du **Datathon 2025**. Il vise à :
 > Développer un chatbot d'assistance pour les utilisateurs de fauteuils roulants, offrant des fonctionnalités de maintenance préventive, de diagnostic de pannes et de suggestions de produits adaptés.
 
-> Ravenfox est une entreprise française spécialisée dans la conception et la fabrication d’accessoires pour fauteuils roulants électriques, destinés aux personnes à mobilité réduite.
+> **Ravenfox** est une entreprise française spécialisée dans la conception et la fabrication d’accessoires pour fauteuils roulants électriques, destinés aux personnes à mobilité réduite.
 
 ## 📖 Table des Matières
 - [Aperçu du Projet](#aperçu-du-projet)
