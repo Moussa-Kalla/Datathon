@@ -11,7 +11,7 @@ Ce projet a été développé dans le cadre du **Datathon 2025**. Il vise à :
 
 ## 🏆 Aperçu du Projet
 
-![Aperçu du projet](/Users/moussa-kalla/Datathon/data/06637244-d253-4c11-9abe-52b973e46ca7.png)  <!-- Remplace par le bon chemin de ton image -->
+![Aperçu du projet](https://github.com/Moussa-Kalla/Datathon/blob/main/data/06637244-d253-4c11-9abe-52b973e46ca7.png?raw=true)  <!-- Remplace par le bon chemin de ton image -->
 
 
 ## 📖 Table des Matières
