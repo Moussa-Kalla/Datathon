@@ -1,7 +1,8 @@
-from fastapi import FastAPI
+from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.responses import StreamingResponse
 from pydantic import BaseModel
-from app import Ravenfox_chat
+from app import ravenfox_chat
 
 app = FastAPI()
 
@@ -14,13 +15,17 @@ app.add_middleware(
 )
 
 
-
 @app.get("/")
 async def root():
-    return {"message": "Hello World"}
+    return "Hello, je suis Ravenfox votre assistant support"
+
 
 class Answer(BaseModel):
     text: str
 @app.post("/answer")
-async def say_hello(answer: Answer):
-    return {"message": Ravenfox_chat(answer.text)}
+async def chat_bot(answer: Answer):
+    try :
+        #return StreamingResponse(ravenfox_chat(answer.text), media_type="text/event-stream")
+        return ravenfox_chat(answer.text)
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
