@@ -1,11 +1,13 @@
 "use client";
 
-import {useState} from "react";
+import {useEffect, useRef, useState} from "react";
 import {EmptyContent} from "@/app/components/EmptyView";
 import ReactMarkdown from "react-markdown";
 import {Prism as SyntaxHighlighter} from "react-syntax-highlighter";
 import {dracula} from "react-syntax-highlighter/dist/esm/styles/prism";
 import remarkGfm from "remark-gfm";
+import searchIcon from "@/app/assets/arrow-small-up.svg";
+import Image from "next/image";
 
 // Définition du type pour les messages
 type Message = {
@@ -18,6 +20,19 @@ export default function Home() {
     const [messages, setMessages] = useState<Message[]>([]);
     const [streamResponse, setStreamResponse] = useState<string>("");
     const [isLoading, setIsLoading] = useState(false);
+    const responseContainerRef = useRef(null);
+
+    // Fonction pour faire défiler automatiquement vers le bas
+    const scrollToBottom = () => {
+        if (responseContainerRef.current) {
+            responseContainerRef.current.scrollTop = responseContainerRef.current.scrollHeight;
+        }
+    };
+
+    // Effet pour déclencher le scroll automatique quand la réponse change
+    useEffect(() => {
+        scrollToBottom();
+    }, [streamResponse]);
 
     // Fonction pour récupérer la réponse de l'assistant en streaming
     const fetchResponse = async (question: string) => {
@@ -78,16 +93,22 @@ export default function Home() {
             content: answer,
         };
 
+        scrollToBottom()
         setMessages((prevMessages) => [...prevMessages, userMessage]);
+
         setIsLoading(true);
         await fetchResponse(userMessage.content);
         input.value = "";
     };
 
     return (
-        <main className="flex items-center justify-center w-full h-screen overflow-x-hidden overflow-y-scroll">
+        <main
+            ref={responseContainerRef}
+            id="main"
+            className="flex items-center justify-center h-screen w-full overflow-x-hidden">
             <div className="flex flex-col items-center justify-center w-3/4 h-full relative">
                 <div className="w-full flex-1">
+                    <div className="h-48 w-full"></div>
                     {messages.length > 0 ? (
                         messages.map((message, index) => (
                             <div
@@ -122,7 +143,7 @@ export default function Home() {
                                             },
                                         }}
                                     >
-                                        {message.content.replace(/\\n/g, "\n")}
+                                        {message.content.replace(/\\n/g, "\n").replace(/^"|"$/g, '')}
                                     </ReactMarkdown>
                                 </div>
                             </div>
@@ -133,7 +154,11 @@ export default function Home() {
                     {streamResponse.length > 0 && (
                         <div
                             className="flex flex-col items-start justify-center w-fit bg-gray-100 p-3 rounded-xl my-2 mr-auto">
+                            <p className="text-black/70 text-sm">
+                                Assistant
+                            </p>
                             <ReactMarkdown
+                                className={"text-black text-sm"}
                                 remarkPlugins={[remarkGfm]}
                                 components={{
                                     code({node, inline, className, children, ...props}) {
@@ -178,9 +203,9 @@ export default function Home() {
             />
                         <button
                             onClick={handleSubmit}
-                            className="absolute right-4 bottom-4 bg-black text-white py-2 px-6 rounded-xl hover:bg-gray-800 transition-colors"
+                            className="absolute right-4 bottom-4 border-4 border-black text-white rounded-full hover:bg-gray-50 transition-colors"
                         >
-                            Envoyer
+                            <Image className={"text-white"} src={searchIcon} alt="search" width={24} height={24}/>
                         </button>
                     </div>
                 </div>

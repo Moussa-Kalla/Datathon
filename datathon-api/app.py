@@ -148,12 +148,26 @@ Réponds avec précision en tenant compte du contexte de manière générale.
 """
 
 
-    response = client.chat.completions.create(
-        model="gpt-4o",
-        messages=[{"role": "user", "content": prompt}],
-        max_tokens=1000
-    )
-    return response.choices[0].message.content
+    # response = client.chat.with_raw_response.completions.create(
+    #     model="gpt-4o",
+    #     messages=[{"role": "user", "content": prompt}],
+    #     max_tokens=1000,
+    #     stream=False  # STREAMING ACTIVÉ
+    # )
+    #
+    # return convert_to_json(response.text)['choices'][0]['message']['content']
 
+    try:
+        response = client.chat.completions.create(
+            model="gpt-4o",
+            messages=[{"role": "user", "content": prompt}],
+            max_tokens=1000,
+            stream=True  # STREAMING ACTIVÉ
+        )
 
+        for chunk in response:
+            if chunk and chunk.choices and chunk.choices[0].delta.content:
+                yield chunk.choices[0].delta.content
 
+    except Exception as e:
+        yield f"Erreur: {str(e)}"

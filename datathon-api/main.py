@@ -2,7 +2,7 @@ from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import StreamingResponse
 from pydantic import BaseModel
-from app import ravenfox_chat
+from app import ask_gpt4o
 
 app = FastAPI()
 
@@ -25,7 +25,9 @@ class Answer(BaseModel):
 @app.post("/answer")
 async def chat_bot(answer: Answer):
     try :
-        #return StreamingResponse(ravenfox_chat(answer.text), media_type="text/event-stream")
-        return ravenfox_chat(answer.text)
+        return StreamingResponse(
+            ask_gpt4o(answer.text),
+            media_type='text/event-stream'
+        )
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
