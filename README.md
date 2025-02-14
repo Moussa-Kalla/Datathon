@@ -9,6 +9,10 @@ Ce projet a été développé dans le cadre du **Datathon 2025**. Il vise à :
 > Le projet utilise une approche RAG (Retrieval-Augmented Generation) en exploitant les données des manuels de réparation des fauteuils roulants pour fournir des réponses précises aux utilisateurs. Il intègre également l'API OpenAI afin de tirer parti des capacités avancées de GPT-4 pour une interaction fluide et intelligente avec les utilisateurs.
 
 
+## 🏆 Aperçu du Projet
+
+![Aperçu du projet](/Users/moussa-kalla/Datathon/data/06637244-d253-4c11-9abe-52b973e46ca7.png)  <!-- Remplace par le bon chemin de ton image -->
+
 
 ## 📖 Table des Matières
 - [Aperçu du Projet](#aperçu-du-projet)
