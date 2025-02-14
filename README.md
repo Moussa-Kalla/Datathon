@@ -25,7 +25,7 @@ Ce projet a été développé dans le cadre du **Datathon 2025**. Il vise à :
 📌 **Objectifs** :
 - Développer une solution AI/Data pour le Datathon.
 - Offrir une assistance intelligente pour les utilisateurs ciblés.
-- Intégrer un **chatbot NLP avancé** avec des fonctionnalités spécifiques.
+- Intégrer un **chatbot intelligent** avec des fonctionnalités spécifiques.
 
 📌 **Fonctionnalités principales** :
 - ✅ Maintenance préventive (rappels et entretiens).
