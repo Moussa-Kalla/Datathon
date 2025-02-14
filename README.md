@@ -1,10 +1,10 @@
-# Datathon IA School : Chatbot interactif pour Ravenfox
+# Datathon IA School : Chatbot interactif pour RAVENFOX
 
 ## 📌 Description
 Ce projet a été développé dans le cadre du **Datathon 2025**. Il vise à :
 > Développer un chatbot d'assistance pour les utilisateurs de fauteuils roulants, offrant des fonctionnalités de maintenance préventive, de diagnostic de pannes et de suggestions de produits adaptés.
 
-> **Ravenfox** est une entreprise française spécialisée dans la conception et la fabrication d’accessoires pour fauteuils roulants électriques, destinés aux personnes à mobilité réduite.
+> [RAVENFOX](https://ravenfox.xyz/?srsltid=AfmBOorF6RvAbRO4FHaCXCqn_Y2YTsEUwo1jY0HmovVRmSG0yXSXZDXY) est une entreprise française spécialisée dans la conception et la fabrication d’accessoires pour fauteuils roulants électriques, destinés aux personnes à mobilité réduite.
 
 ## 📖 Table des Matières
 - [Aperçu du Projet](#aperçu-du-projet)
@@ -13,7 +13,6 @@ Ce projet a été développé dans le cadre du **Datathon 2025**. Il vise à :
 - [Installation](#installation)
 - [Utilisation](#utilisation)
 - [Contribuer](#contribuer)
-- [Licence](#licence)
 - [Remerciements](#remerciements)
 
 ---
@@ -56,7 +55,7 @@ git clone https://github.com/Moussa-Kalla/Datathon.git
 cd Datathon
 ```
 
-## 2️⃣ Installer les dépendances
+2️⃣ Installer les dépendances
 
 🔹 Backend
 ```bash
@@ -82,5 +81,18 @@ npm start
 
 🔗 Ouvrez un navigateur et rendez-vous sur : http://localhost:3000
 
+## 🤝 Contribuer
 
+Les contributions sont les bienvenues ! 🎉
+Veuillez suivre les étapes ci-dessous :
+ 1. Forkez le repository.
+ 2. Créez une branche pour votre fonctionnalité :
+```bash
+ git checkout -b feature/NouvelleFeature
+```
+ 3.	Ouvrez une Pull Request sur GitHub.
 
+ ## 🙌 Remerciements
+
+Merci à toute l’équipe du Datathon 2025 pour leur travail acharné ! 🚀
+Nous remercions également les organisateurs et sponsors pour cet événement.
