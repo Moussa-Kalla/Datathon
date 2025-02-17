@@ -24,8 +24,6 @@ Ce projet a été développé dans le cadre du **Datathon 2025**. Il vise à :
 - [Remerciements](#remerciements)
 
 ---
-
-## 🏆 Aperçu du Projet
 📌 **Objectifs** :
 - Développer une solution AI/Data pour le Datathon.
 - Offrir une assistance intelligente pour les utilisateurs ciblés.
