@@ -14,7 +14,7 @@ Ce projet a été développé dans le cadre du **Datathon 2025**. Il vise à :
 ![Aperçu du projet](https://github.com/Moussa-Kalla/Datathon/blob/main/data/06637244-d253-4c11-9abe-52b973e46ca7.png?raw=true)  <!-- Remplace par le bon chemin de ton image -->
 
 
-## 📖 Table des Matières
+## Table des Matières
 - [Aperçu du Projet](#aperçu-du-projet)
 - [Structure du Projet](#structure-du-projet)
 - [Technologies Utilisées](#technologies-utilisées)
@@ -69,7 +69,7 @@ cd datathon-api
 pip install -r requirements.txt
 ```
 
-## 💡 Utilisation
+## Utilisation
 
 1. Démarrer le backend
 ```bash
@@ -100,5 +100,5 @@ Veuillez suivre les étapes ci-dessous :
 
  ## Remerciements
 
-Merci à toute l’équipe du Datathon 2025 pour leur travail acharné ! 🚀
+Merci à toute l’équipe du Datathon 2025 pour leur travail acharné !
 Nous remercions également les organisateurs et sponsors pour cet événement.
